@@ -1,0 +1,25 @@
+{
+  "name": "static-site-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinwhite/static-site-generator.git"
+  },
+  "author": "austin white",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austinwhite/static-site-generator/issues"
+  },
+  "homepage": "https://github.com/austinwhite/static-site-generator#readme",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^13.0.1",
+    "markdown-it-imsize": "^2.0.1",
+    "markdown-it-katex": "^2.0.3"
+  }
+}
