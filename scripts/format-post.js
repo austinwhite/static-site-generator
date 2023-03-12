@@ -4,7 +4,7 @@ const fs = require("fs");
 const matter = require("gray-matter");
 const md = require("markdown-it")()
   .use(require("markdown-it-katex"), { output: "html", throwOnError: true })
-  .use(require("markdown-it-imsize"))
+  .use(require("markdown-it-imsize"), { autofill: true })
   .use(require("markdown-it-highlightjs"));
 
 main();
@@ -32,7 +32,7 @@ function write_html_document(title, summary, body, stylesheets) {
 }
 
 function main() {
-  let front_matter = matter(fs.readFileSync("./posts/test.md"));
+  let front_matter = matter(fs.readFileSync("./posts/Managing_Linux_Dotfiles_With_GNU_Stow/Managing_Linux_Dotfiles_With_GNU_Stow.md"));
   let md_content = front_matter.content;
   let title = front_matter.data.title;
   let tags = front_matter.data.tags;
@@ -40,7 +40,7 @@ function main() {
   let summary = front_matter.data.summary;
 
   const stylesheets = [
-    "site_files/highlightjs_styles/nord.css",
+    "site_files/highlightjs_styles/github.css",
     "site_files/katex.min.css",
     "site_files/style.css"
   ];
