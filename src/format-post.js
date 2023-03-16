@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { getStylesheetTag } from "./util.js";
-import { createRequire } from 'module';
+import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const fs = require("fs");
@@ -13,25 +13,33 @@ const md = require("markdown-it")()
 
 function writeHtmlDocument(title, summary, body, stylesheets) {
   return (
-    '<!DOCTYPE html>\n' +
+    "<!DOCTYPE html>\n" +
     '<html lang="en">\n' +
-      '<head>\n' +
-        '<meta charset="utf-8">\n' +
-        '<meta name="description" content="' + summary + '">\n' +
-        '<meta name="viewport" content="width=device-width">\n' +
-        '<title>' + title + '</title>\n' +
-        stylesheets.map(getStylesheetTag).join(' ') + '\n' +
-        '<link rel="shortcut icon" href="site_files/favicon.ico">\n' +
-      '</head>\n' +
-      '<body>\n' +
-        body + '\n' +
-      '</body>\n' +
-    '</html>'
+    "<head>\n" +
+    '<meta charset="utf-8">\n' +
+    '<meta name="description" content="' +
+    summary +
+    '">\n' +
+    '<meta name="viewport" content="width=device-width">\n' +
+    "<title>" +
+    title +
+    "</title>\n" +
+    stylesheets.map(getStylesheetTag).join(" ") +
+    "\n" +
+    '<link rel="shortcut icon" href="site_files/favicon.ico">\n' +
+    "</head>\n" +
+    "<body>\n" +
+    body +
+    "\n" +
+    "</body>\n" +
+    "</html>"
   );
 }
 
 export function formatPost(postPath, stylesheets) {
-  fs.existsSync(postPath);
+  if (!fs.existsSync(postPath)) {
+    throw new Error(postPath + " does not exist.")
+  }
 
   let frontMatter = matter(fs.readFileSync(postPath));
   let mdContent = frontMatter.content;

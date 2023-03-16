@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/austinwhite/static-site-generator#readme",
   "dependencies": {
-    "glob": "^9.3.0",
     "gray-matter": "^4.0.3",
     "markdown-it": "^13.0.1",
     "markdown-it-highlightjs": "^4.0.1",

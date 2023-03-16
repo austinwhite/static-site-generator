@@ -4,7 +4,7 @@ import { getStylesheetTag } from "./util.js";
 
 function generateBody(stream, postPaths) {
   stream.push("<body>\n");
-  
+
   for (let i = 0; i < postPaths.length; i++) {
     stream.push(postPaths[i] + "\n");
   }

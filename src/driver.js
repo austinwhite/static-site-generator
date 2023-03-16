@@ -15,14 +15,17 @@ const postStylesheets = [
 main();
 
 function getPostPaths() {
-  fs.existsSync("./posts");
+  if (!fs.existsSync("./posts")) {
+    throw new Error("posts directory does not exist.");
+  }
 
   const postDirs = fs
-    .readdirSync("./posts", { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
+    .readdirSync("posts", { withFileTypes: true })
+    .filter((dirent) => dirent.name.endsWith(".md"))
+    .filter((dirent) => dirent.name != "README.md")
     .map((dirent) => dirent.name);
 
-  return postDirs.map((post) => path.join("posts", post, post + ".md"));
+  return postDirs.map((post) => path.join("posts", post));
 }
 
 function main() {
@@ -30,6 +33,7 @@ function main() {
   fs.mkdirSync("site/posts/images", { recursive: true });
   fs.mkdirSync("site/rsc", { recursive: true });
   fs.cpSync("site_files", "site/rsc", { recursive: true });
+  fs.cpSync("posts/images", "site/posts/images", { recursive: true });
 
   const postPaths = getPostPaths();
 
@@ -38,13 +42,12 @@ function main() {
     generateIndex(indexStylesheets, postPaths)
   );
 
-  for (let i = 0; i < postPaths.length; i++) {
-    const postPath = postPaths[i];
-    const fileName = postPath.split(path.sep)[2].split(".")[0];
+  postPaths.map((postPath) => {
+    const fileName = postPath.split(path.sep)[1].split(".")[0];
 
     fs.writeFileSync(
       "site/posts/" + fileName + ".html",
       formatPost(postPath, postStylesheets)
     );
-  }
+  });
 }
