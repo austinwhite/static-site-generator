@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { getStylesheetTag } from "./util.js";
+import { getPostMetadata, getStylesheetTag } from "./util.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const fs = require("fs");
-const matter = require("gray-matter");
 const md = require("markdown-it")()
   .use(require("markdown-it-katex"), { output: "html", throwOnError: true })
   .use(require("markdown-it-imsize"), { autofill: true })
@@ -24,9 +23,11 @@ function writeHtmlDocument(title, summary, body, stylesheets) {
     "<title>" +
     title +
     "</title>\n" +
-    stylesheets.map(getStylesheetTag).join(" ") +
+    stylesheets
+      .map((stylesheet) => getStylesheetTag("../../site/rsc", stylesheet))
+      .join(" ") +
     "\n" +
-    '<link rel="shortcut icon" href="site_files/favicon.ico">\n' +
+    '<link rel="shortcut icon" href="../../site/rsc/favicon.ico">\n' +
     "</head>\n" +
     "<body>\n" +
     body +
@@ -38,27 +39,10 @@ function writeHtmlDocument(title, summary, body, stylesheets) {
 
 export function formatPost(postPath, stylesheets) {
   if (!fs.existsSync(postPath)) {
-    throw new Error(postPath + " does not exist.")
+    throw new Error(postPath + " does not exist.");
   }
 
-  let frontMatter = matter(fs.readFileSync(postPath));
-  let mdContent = frontMatter.content;
-  let title = frontMatter.data.title;
-  let tags = frontMatter.data.tags;
-  let date = frontMatter.data.date;
-  let summary = frontMatter.data.summary;
-
-  if (
-    mdContent == null ||
-    title == null ||
-    tags == null ||
-    date == null ||
-    summary == null
-  ) {
-    throw new Error("invalid front matter in file " + postPath);
-  }
-
-  mdContent = "# " + title + mdContent;
+  const { mdContent, title, tags, date, summary } = getPostMetadata(postPath);
 
   let parsedHtml = "<article>" + md.render(mdContent) + "</article>";
   let htmlDocument = writeHtmlDocument(title, summary, parsedHtml, stylesheets);

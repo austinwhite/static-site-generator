@@ -22,7 +22,7 @@ function getPostPaths() {
   const postDirs = fs
     .readdirSync("posts", { withFileTypes: true })
     .filter((dirent) => dirent.name.endsWith(".md"))
-    .filter((dirent) => dirent.name != "README.md")
+    .filter((dirent) => dirent.name !== "README.md")
     .map((dirent) => dirent.name);
 
   return postDirs.map((post) => path.join("posts", post));
@@ -43,7 +43,7 @@ function main() {
   );
 
   postPaths.map((postPath) => {
-    const fileName = postPath.split(path.sep)[1].split(".")[0];
+    const fileName = postPath.split("/")[1].split(".")[0];
 
     fs.writeFileSync(
       "site/posts/" + fileName + ".html",

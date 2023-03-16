@@ -6,7 +6,9 @@ function generateBody(stream, postPaths) {
   stream.push("<body>\n");
 
   for (let i = 0; i < postPaths.length; i++) {
-    stream.push(postPaths[i] + "\n");
+    const htmlPath = postPaths[i].split(".")[0] + ".html";
+
+    stream.push("<a href=" + htmlPath + ">" + htmlPath + "</a></br>\n");
   }
 
   stream.push("</body>\n");
@@ -26,8 +28,12 @@ function getFront(stream, stylesheets) {
     '<meta name="description" content="The personal website of Austin White">\n'
   );
   stream.push("<title>Austin White</title>\n");
-  stream.push('<link rel="shortcut icon" href="site_files/favicon.ico">\n');
-  stream.push(stylesheets.map(getStylesheetTag).join("\n") + "\n");
+  stream.push('<link rel="shortcut icon" href="../site/rsc/favicon.ico">\n');
+  stream.push(
+    stylesheets
+      .map((stylesheet) => getStylesheetTag("../site/rsc", stylesheet))
+      .join("\n") + "\n"
+  );
   stream.push("</head>\n");
 }
 
