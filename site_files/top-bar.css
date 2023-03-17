@@ -1,0 +1,43 @@
+.top-bar {
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+.site-name a {
+  color: black;
+}
+
+.site-name {
+  font-size: 150%;
+  flex: 1;
+}
+
+.svg-icons {
+  display: inline-flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.svg-icons svg {
+  display: block;
+  margin-left: 10px;
+  height: 32px;
+  width: 32px;
+}
+
+@media (hover: hover) {
+  #email svg:hover {
+    fill: #0008;
+  }
+
+  #github svg:hover {
+    fill: #0008;
+  }
+
+  #linkedin svg:hover {
+    fill: #0008;
+  }
+}

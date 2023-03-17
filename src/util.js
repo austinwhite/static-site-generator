@@ -7,7 +7,9 @@ const matter = require("gray-matter");
 const fs = require("fs");
 
 export function getStylesheetTag(relativePath, stylesheet) {
-  return '<link rel="stylesheet" href=' + relativePath + "/" + stylesheet + ">";
+  return (
+    '<link rel="stylesheet" href="' + relativePath + "/" + stylesheet + '">'
+  );
 }
 
 export function getPostMetadata(postPath) {

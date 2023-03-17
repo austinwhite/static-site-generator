@@ -1,0 +1,33 @@
+img {
+  max-width: 250px;
+  height: auto;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 700px;
+}
+
+.post {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.summary {
+  padding-top: 8px;
+}
+
+@media screen and (max-width: 620px) {
+  img {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .summary {
+    margin-bottom: 16px;
+  }
+}

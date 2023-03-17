@@ -42,7 +42,7 @@ export function formatPost(postPath, stylesheets) {
     throw new Error(postPath + " does not exist.");
   }
 
-  const { mdContent, title, tags, date, summary } = getPostMetadata(postPath);
+  const { mdContent, title, summary } = getPostMetadata(postPath);
 
   let parsedHtml = "<article>" + md.render(mdContent) + "</article>";
   let htmlDocument = writeHtmlDocument(title, summary, parsedHtml, stylesheets);

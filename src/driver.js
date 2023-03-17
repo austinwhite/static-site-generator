@@ -3,13 +3,14 @@ import { generateIndex } from "./format-index.js";
 import * as fs from "fs";
 import * as path from "path";
 
-const indexStylesheets = ["index.css", "global.css"];
+const indexStylesheets = ["global.css", "index.css", "top-bar.css"];
 
 const postStylesheets = [
+  "global.css",
   "github.css",
   "katex.min.css",
-  "global.css",
   "posts.css",
+  "top-bar.css",
 ];
 
 main();

@@ -36,11 +36,21 @@
   font-display: swap;
 }
 
+@page {
+  margin: 25mm;
+}
+
 a {
   color: #005cc5;
   text-decoration: none;
 }
 
-a:hover {
-  color: #0007;
+@media (hover: hover) {
+  a:hover {
+    color: #0008;
+  }
+}
+
+body {
+  padding: 20px;
 }

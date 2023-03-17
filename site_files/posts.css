@@ -194,7 +194,7 @@ h3 {
   article {
     margin: auto;
     position: relative;
-    max-width: 715px;
+    max-width: 700px;
   }
 }
 
@@ -214,8 +214,4 @@ h3 {
   pre {
     overflow: visible;
   }
-}
-
-@page {
-  margin: 25mm;
 }

@@ -1,18 +1,8 @@
 #!/usr/bin/env node
 
-import { getStylesheetTag } from "./util.js";
-
-function generateBody(stream, postPaths) {
-  stream.push("<body>\n");
-
-  for (let i = 0; i < postPaths.length; i++) {
-    const htmlPath = postPaths[i].split(".")[0] + ".html";
-
-    stream.push("<a href=" + htmlPath + ">" + htmlPath + "</a></br>\n");
-  }
-
-  stream.push("</body>\n");
-}
+import { getStylesheetTag, getPostMetadata } from "./util.js";
+import { topBar } from "./top-bar.js";
+import * as fs from "fs";
 
 function getFront(stream, stylesheets) {
   stream.push("<!DOCTYPE html>\n");
@@ -35,6 +25,75 @@ function getFront(stream, stylesheets) {
       .join("\n") + "\n"
   );
   stream.push("</head>\n");
+}
+
+function getHeroImagePath(postPath) {
+  const postImagesPath = "posts/images/" + postPath.split(/[/.]+/)[1];
+  const heroImageName = fs
+    .readdirSync(postImagesPath)
+    .filter((dirent) => dirent.startsWith("hero."));
+
+  return postImagesPath + "/" + heroImageName;
+}
+
+function convertDate(date) {
+  date = date.split("-");
+
+  const months = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "Septmenber",
+    10: "October",
+    11: "November",
+    12: "December",
+  };
+
+  return months[parseInt(date[0])] + " " + date[1] + ", " + date[2];
+}
+
+function generateBody(stream, postPaths) {
+  stream.push("<body>\n");
+  stream.push("<div class='container'>\n");
+
+  stream.push("<header>\n")
+  topBar(stream);
+  stream.push("</header>\n")
+
+  postPaths.map((postPath) => {
+    const { title, date, summary } = getPostMetadata(postPath);
+    const heroImagePath = getHeroImagePath(postPath);
+    const htmlPath = postPath.replace(".md", ".html");
+
+    stream.push("<div class='post'>\n");
+    stream.push("<div class='hero'>\n");
+    stream.push('<a href="' + htmlPath + '">\n');
+    stream.push('<img src="' + heroImagePath + '" alt="' + title + '">\n');
+    stream.push("</a>\n");
+    stream.push("</div>\n");
+    stream.push("<div class='postInfo'>\n");
+    stream.push("<div class='title'>\n");
+    stream.push(
+      '<a href="' + htmlPath + '"><strong>' + title + "</strong></a>\n"
+    );
+    stream.push("</div>\n");
+    stream.push("<div class='date'>\n");
+    stream.push("<small>" + convertDate(date) + "</small>");
+    stream.push("</div>\n");
+    stream.push("<div class='summary'>\n");
+    stream.push(summary + "\n");
+    stream.push("</div>\n");
+    stream.push("</div>\n");
+    stream.push("</div>\n");
+  });
+
+  stream.push("</div>\n");
+  stream.push("</body>\n");
 }
 
 function getBack(stream) {
