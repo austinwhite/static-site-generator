@@ -14,7 +14,7 @@ export function topBar(stream) {
 
   stream.push("<nav class='top-bar'>\n");
   stream.push("<div class='site-name'>\n");
-  stream.push("<a href='index.html'> Austin White </a>\n");
+  stream.push("Austin White\n");
   stream.push("</div>\n");
   stream.push("<ul class='svg-icons'>\n");
   stream.push(
@@ -25,17 +25,17 @@ export function topBar(stream) {
       "</a></li>\n"
   );
   stream.push(
-    "<li id=github><a href='" +
-      githubURL +
-      '\' target="_blank" name=GitHub>' +
-      githubSVG +
-      "</a></li>\n"
-  );
-  stream.push(
     "<li id=linkedin><a href='" +
       linkedinURL +
       '\' target="_blank" name=Linkedin>' +
       linkedinSVG +
+      "</a></li>\n"
+  );
+  stream.push(
+    "<li id=github><a href='" +
+      githubURL +
+      '\' target="_blank" name=GitHub>' +
+      githubSVG +
       "</a></li>\n"
   );
   stream.push("</ul>\n");

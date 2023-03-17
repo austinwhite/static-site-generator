@@ -5,13 +5,10 @@
   margin-bottom: 30px;
 }
 
-.site-name a {
-  color: black;
-}
-
 .site-name {
   font-size: 150%;
   flex: 1;
+  padding-top: 3px;
 }
 
 .svg-icons {
