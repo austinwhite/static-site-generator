@@ -1,15 +1,21 @@
-img {
-  max-width: 250px;
-  height: auto;
-  border-radius: 4px;
-  margin-right: 12px;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   margin: auto;
   max-width: 700px;
+}
+
+.img-container {
+  width: 250px;
+  float: left;
+  height: 140px;
+  border-radius: 4px;
+  margin-right: 12px;
+  overflow: hidden;
+}
+
+img.clip {
+  width: 100%;
 }
 
 .post {
@@ -22,7 +28,7 @@ img {
 }
 
 @media screen and (max-width: 620px) {
-  img {
+  .img-container {
     position: absolute;
     visibility: hidden;
   }
