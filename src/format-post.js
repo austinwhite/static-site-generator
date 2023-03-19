@@ -24,10 +24,10 @@ function writeHtmlDocument(title, summary, body, stylesheets) {
     title +
     "</title>\n" +
     stylesheets
-      .map((stylesheet) => getStylesheetTag("../../site/rsc", stylesheet))
+      .map((stylesheet) => getStylesheetTag("../rsc", stylesheet))
       .join(" ") +
     "\n" +
-    '<link rel="shortcut icon" href="../../site/rsc/favicon.ico">\n' +
+    '<link rel="shortcut icon" href="rsc/favicon.ico">\n' +
     "</head>\n" +
     "<body>\n" +
     body +

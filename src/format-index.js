@@ -59,10 +59,10 @@ function getFront(stream, stylesheets) {
     '<meta name="description" content="The personal website of Austin White">\n'
   );
   stream.push("<title>Austin White</title>\n");
-  stream.push('<link rel="shortcut icon" href="../site/rsc/favicon.ico">\n');
+  stream.push('<link rel="shortcut icon" href="rsc/favicon.ico">\n');
   stream.push(
     stylesheets
-      .map((stylesheet) => getStylesheetTag("../site/rsc", stylesheet))
+      .map((stylesheet) => getStylesheetTag("rsc", stylesheet))
       .join("\n") + "\n"
   );
   stream.push("</head>\n");

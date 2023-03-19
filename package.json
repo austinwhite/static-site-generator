@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "node src/driver.js"
+    "build": "node src/driver.js",
+    "deploy": "scp -r site/* austin@170.187.207.48:/var/www/austinwhite.com/"
   },
   "repository": {
     "type": "git",
