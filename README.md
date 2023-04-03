@@ -42,7 +42,7 @@ posts/
 </pre>
 
 #### post format
-Every post.md file must be in the following form
+Every post.md file must be in the following format
 <pre>
 ---
 title: [your title]
