@@ -21,7 +21,7 @@ Make the following modifiations:
 * Change 'Austin White' in top-bar.js to your name.
 * Change the social links in top-bar.js to your own.
 * Change the deploy script in package.json to point to your webserver.
-* Remove 'posts' submodule and add your own of the same name (you can copy the existing posts/new-posts script).
+* Remove 'posts' submodule and add your own of the same name (you can copy the existing posts/new-post script).
 
 #### posts/ directory structure
 <pre>
