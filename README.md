@@ -1,6 +1,6 @@
 # static site generator
 
-This utility generates my website [austinwhite.com](austinwhite.com).
+This utility generates my website [austinwhite.com](https://austinwhite.com).
 
 * Minimalist aesthetic.
 * Responsive design.
