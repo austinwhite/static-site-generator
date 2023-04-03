@@ -4,7 +4,7 @@ This utility generates my website [austinwhite.com](austinwhite.com).
 
 * Minimalist aesthetic.
 * Responsive design.
-* Supports Katex typesetting and code syntax highlighting.
+* Supports Katex typesetting and language specific code syntax highlighting.
 * Thumbnail images for each post allowing the reader to more effectivly scan available articles.
 
 ### Building
