@@ -1,54 +1,54 @@
-import { formatPost } from "./format-post.js";
-import { generateIndex } from "./format-index.js";
-import * as fs from "fs";
-import * as path from "path";
+import { formatPost } from './format-post.js'
+import { generateIndex } from './format-index.js'
+import * as fs from 'fs'
+import * as path from 'path'
 
-const indexStylesheets = ["global.css", "index.css", "top-bar.css"];
+const indexStylesheets = ['global.css', 'index.css', 'top-bar.css']
 
 const postStylesheets = [
-  "global.css",
-  "github.css",
-  "katex.min.css",
-  "posts.css",
-  "top-bar.css",
-];
+  'global.css',
+  'github.css',
+  'katex.min.css',
+  'posts.css',
+  'top-bar.css',
+]
 
-main();
+main()
 
 function getPostPaths() {
-  if (!fs.existsSync("./posts")) {
-    throw new Error("posts directory does not exist.");
+  if (!fs.existsSync('./posts')) {
+    throw new Error('posts directory does not exist.')
   }
 
   const postDirs = fs
-    .readdirSync("posts", { withFileTypes: true })
-    .filter((dirent) => dirent.name.endsWith(".md"))
-    .filter((dirent) => dirent.name !== "README.md")
-    .map((dirent) => dirent.name);
+    .readdirSync('posts', { withFileTypes: true })
+    .filter((dirent) => dirent.name.endsWith('.md'))
+    .filter((dirent) => dirent.name !== 'README.md')
+    .map((dirent) => dirent.name)
 
-  return postDirs.map((post) => path.join("posts", post));
+  return postDirs.map((post) => path.join('posts', post))
 }
 
 function main() {
-  fs.rmSync("site", { recursive: true, force: true });
-  fs.mkdirSync("site/posts/images", { recursive: true });
-  fs.mkdirSync("site/rsc", { recursive: true });
-  fs.cpSync("site_files", "site/rsc", { recursive: true });
-  fs.cpSync("posts/images", "site/posts/images", { recursive: true });
+  fs.rmSync('site', { recursive: true, force: true })
+  fs.mkdirSync('site/posts/images', { recursive: true })
+  fs.mkdirSync('site/rsc', { recursive: true })
+  fs.cpSync('site_files', 'site/rsc', { recursive: true })
+  fs.cpSync('posts/images', 'site/posts/images', { recursive: true })
 
-  const postPaths = getPostPaths();
+  const postPaths = getPostPaths()
 
   fs.writeFileSync(
-    "site/index.html",
+    'site/index.html',
     generateIndex(indexStylesheets, postPaths)
-  );
+  )
 
   postPaths.map((postPath) => {
-    const fileName = postPath.split("/")[1].split(".")[0];
+    const fileName = postPath.split('/')[1].split('.')[0]
 
     fs.writeFileSync(
-      "site/posts/" + fileName + ".html",
+      'site/posts/' + fileName + '.html',
       formatPost(postPath, postStylesheets)
-    );
-  });
+    )
+  })
 }
