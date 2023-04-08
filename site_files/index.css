@@ -1,14 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: auto;
   max-width: 700px;
 }
 
 .img-container {
-  width: 250px;
+  width: 212px;
   float: left;
-  height: 140px;
+  height: 120px;
   border-radius: 4px;
   margin-right: 12px;
   overflow: hidden;
@@ -18,16 +17,19 @@ img.clip {
   width: 100%;
 }
 
+.postInfo {
+}
+
 .post {
   display: flex;
   margin-bottom: 14px;
 }
 
 .summary {
-  padding-top: 8px;
+  padding-top: 5px;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 670px) {
   .img-container {
     position: absolute;
     visibility: hidden;
@@ -37,3 +39,4 @@ img.clip {
     margin-bottom: 16px;
   }
 }
+
