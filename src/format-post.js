@@ -27,7 +27,7 @@ function writeHtmlDocument(title, summary, body, stylesheets) {
       .map((stylesheet) => getStylesheetTag('../rsc', stylesheet))
       .join(' ') +
     '\n' +
-    '<link rel="shortcut icon" href="rsc/favicon.ico">\n' +
+    '<link rel="shortcut icon" href="../rsc/favicon.ico">\n' +
     '</head>\n' +
     '<body>\n' +
     body +
