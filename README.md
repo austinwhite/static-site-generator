@@ -1,7 +1,5 @@
 # static site generator
 
-This utility generates my website [austinwhite.com](https://austinwhite.com).
-
 * Minimalist aesthetic.
 * Responsive design.
 * Supports Katex typesetting and language specific code syntax highlighting.
